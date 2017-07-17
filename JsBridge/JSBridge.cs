@@ -157,9 +157,8 @@ namespace JsBridge
 			foreach (string key in m_info_objects.Keys)
 			{
 				string objstr = m_info_objects[key].Serialize();
-                string js = string.Format("var tobj = new CSObject{0}('{1}'); tobj.create();", key, objstr);
+                string js = string.Format("var {0} = new CSObject{0}('{1}'); {0}.create();", key, objstr);
                 string totaljs = JSDeclareObject.Replace("CSObject", "CSObject"+key).Replace("\r\n","");
-                Console.WriteLine(totaljs);
                 m_browser.ExecuteJavaScript(totaljs);
                 m_browser.ExecuteJavaScript(js);
 			}
